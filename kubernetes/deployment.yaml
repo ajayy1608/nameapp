@@ -26,7 +26,7 @@ spec:
         envFrom:
         - configMapRef:
             name: nameapp
-        image: aksy121/nameapp:v1
+        image: DOCKERHUB_REPO/nameapp:v1
         imagePullPolicy: Always
         name: nameapp
         livenessProbe:
