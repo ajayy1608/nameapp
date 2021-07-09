@@ -1,0 +1,30 @@
+apiVersion: v1
+data:
+  NAME: Ajay Yadav
+kind: ConfigMap
+metadata:
+  labels:
+    app: nameapp
+  name: nameapp
+---
+apiVersion: v1
+data:
+  password: MTIzNA==
+kind: Secret
+metadata:
+  name: nameapp
+# Ideally would have used sealedsecret (example below) for storing secrets in git
+#---
+#apiVersion: bitnami.com/v1alpha1
+#kind: SealedSecret
+#metadata:
+#  labels:
+#    app: nameapp
+#  name: nameapp
+#spec:
+#  encryptedData:
+#    password: AgA7KXfhLCoxyhhUo0vmTfLeqLg/OFKKDmn/QO3yIDoSgEqqs9INhSd03aSLUhpojCddMNiil/TEBh0yx3mYerHspPB0tCRcin72YPZB03u1fi7K0UEtzYbb95PLQv9lsKK63asJlL0Kc7qXRwvzUwUl+L+hlESPrLnGoAt6eUIdUyJpO4Xb0LhWsg6zELSgqoVkqsOAZwKAGnPTNIIbaglU4RLEGv4tr4y6K/iBJXhToRDVisiclxssqhtzoq+v1nSJPgzk2qrTtl+VAaygRjGU7ZQQI9ARk/4wRkmPOUfjtud8nVmG33htzlkvCaWqC8r3eNbZgjbSciFJx/LcdozhtLzWF4gINU1UXvYD2tE31yBufpzXe8sc6+WiKmboud/CyGPwNF9wCgH241kIeFzQI4KwIuz+kGcpd0HaEetDwGMY6MhdMeDoKqlzphwDR9CK3+JPSJlEADQUga+wjmulGHfqW5qKrJNI8evl4vhGL4Oz+YifCveKT08ixo27/n4C1WSf3/8Y9Uo62IlflkP+ngNCAqtCPj0SmxKKD2vEG+mC+eHSnrB71Ag6Cvgwhw+dD9KfMhTdab3t2I3s6gn8odEc37dLQBfmWGY2gRBByjqoSzFqI62CJ4dg04YAVarWy4BZ1YL/vKlkYhsgIJYDlnvW+H0Dnwgf01tDhmAPKcnqJTDzASx1OzTSktlvpV0rUBErGwzZbPFm/GoQ7V2r66Ok9adBkby19JOd3f2okQ==
+#  template:
+#    metadata:
+#      name: nameapp
+#    type: Opaque
