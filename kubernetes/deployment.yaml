@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nameapp
+  name: nameapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nameapp
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "false"
+      labels:
+        app: nameapp
+    spec:
+      containers:
+      - env:
+        - name: PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: nameapp
+        envFrom:
+        - configMapRef:
+            name: nameapp
+        image: aksy121/nameapp:v1
+        imagePullPolicy: Always
+        name: nameapp
+        livenessProbe:
+          httpGet:
+            path: /name
+            port: 5000
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        ports:
+        - containerPort: 5000
+        readinessProbe:
+          httpGet:
+            path: /name
+            port: 5000
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        resources:
+          limits:
+            memory: 100Mi
+            cpu: 50m
+          requests:
+            cpu: 10m
+            memory: 50Mi
+      serviceAccountName: nameapp
+      securityContext:
+        runAsUser: 65534
