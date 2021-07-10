@@ -8,7 +8,7 @@ def print_info():
     name = os.environ['NAME']
     password = os.environ['PASSWORD']
     dt = datetime.datetime.now().strftime("%d/%m/%Y %H:%M")
-    msg = "{} Hello {}, your password is {}".format(dt, name, password) # "30/07/2021 12:00 Hello TG, your password is 1234”
+    msg = "{} Hello {}, your password is {}".format(dt, name, password)
     return msg
 
 if __name__ == "__main__":

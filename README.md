@@ -4,15 +4,16 @@ Tools & Technologies used
 =======
  - AWS: For providing the infrastructure
  - Bash: To write automation in a simple form
- - Kubernetes: As the orchestration layer to manage workloads (used k3d to prepare purgeable environment)
- - Docker: For building and sharing containerized application
- - Helm: Supplemental kubernetes tool to create/share configurable k-native applications
+ - Kubernetes (1.21): As the orchestration layer to manage workloads
+ - k3d (4.4.7): To prepare purgeable kubernetes cluster
+ - Docker (20.10.4): For building and sharing containerized application
+ - Helm (3.6.2): Supplemental kubernetes tool to create/share configurable k-native applications
 
 What does the repo contains
 =======
  - A Dockerfile: which is used to build an image using github actions.
  - The `nameapp.py` application exposing `/name` endpoint which when hit return a string in predefined format.
- - Bunch of manifest files to deploy the application and make it available for users
+ - Bunch of manifest files to deploy the application and make it available for users.
  - A shell script `stack-up.sh` to automate environment creation and deploying the application.
 
 How it works
