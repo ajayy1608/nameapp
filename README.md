@@ -20,7 +20,7 @@ How it works
 =======
 Whenever a PR is raised with changes in either `Dockerfile` or `nameapp.py`, the github action workflow is triggered to build and push the image to set repository with custom tags.
 
-Once the tag is built and pushed you just need to run `stack-up.sh` on any machine running on amazon-linux-2 (as some installation commands are specific to that but can be generalized if required).
+Once the tag is built and pushed you just need to run `stack-up.sh` on any machine running on amazon-linux-2 (as some installation commands are specific to that but can be generalized if required, used a t3.xlarge machine running ami-00f22f6155d6d92c5 in eu-central-1 for testing here).
 
 The `stack-up.sh` performs below tasks:
 - Prepares the environment by installing tools like docker, helm, k3d and kubectl cli.
