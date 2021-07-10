@@ -6,11 +6,9 @@ sudo usermod -a -G docker ec2-user
 sg docker -c "docker info"
 
 #Build Image
-echo "Enter dockerhub repo or press enter to use Ajay's"
-read REPO
-DOCKERHUB_REPO=${REPO:-aksy121}
-sg docker -c "docker build -t $DOCKERHUB_REPO/nameapp:v1 . && \
-[ $DOCKERHUB_REPO == 'aksy121' ] || (docker login && docker push $DOCKERHUB_REPO/nameapp:v1 && docker logout)"
+echo "Enter dockerhub tag (created using github actions ex. pr-1) or press enter to use default"
+read TAG
+DOCKERHUB_TAG=${TAG:-v1}
 
 #Install kubectl cli
 [ -s /usr/local/bin/kubectl ] || (curl -s -o /tmp/kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.20.4/2021-04-12/bin/linux/amd64/kubectl && \
@@ -34,7 +32,7 @@ helm install external-nginx-ingress stable/nginx-ingress --namespace kube-system
    --set controller.extraArgs.publish-service=kube-system/external-nginx-ingress-controller \
    --set controller.replicaCount=1 \
    --set controller.service.type=NodePort
-sed -i "s/DOCKERHUB_REPO/$DOCKERHUB_REPO/" kubernetes/deployment.yaml
+sed -i "s/DOCKERHUB_TAG/$DOCKERHUB_TAG/" kubernetes/deployment.yaml
 kubectl apply -f kubernetes/
 echo "waiting 30 seconds"
 sleep 30

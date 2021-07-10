@@ -1,0 +1,40 @@
+name: Build and Publish nameapp
+
+on:
+  pull_request:
+    paths:
+      - 'Dockerfile'
+      - 'nameapp.py'
+
+jobs:
+  build_and_push_nameapp:
+    name: Build and Push image to Docker Hub
+    environment: prod
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: |
+            aksy121/nameapp
+          tags: |
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=sha
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_PASSWD }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
