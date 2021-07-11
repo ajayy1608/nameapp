@@ -1,5 +1,7 @@
 # nameapp
 
+This is a very simple application exposing just one endpoint `/name` which responds with a message of the format `30/07/2021 12:00 Hello TG, your password is 1234` consisting of current date-time, a custom name and a password made available to it through environment variables. The application is deployed on a kubernetes cluster and will be accessible through a custom domain defined by the associated Ingress object.
+
 Tools & Technologies used
 =======
  - AWS: For providing the infrastructure
